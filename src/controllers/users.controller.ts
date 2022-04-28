@@ -9,12 +9,14 @@ import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 @Controller("/api")
 export class UsersController {
   constructor(private usersService: UsersService) {}
+
   @ApiOperation({ summary: "Створення користувача" })
   @ApiResponse({ status: 200, type: User })
   @Post("/users")
   create(@Body() userDto: CreateUserDto): Promise<User> {
     return this.usersService.createUser(userDto);
   }
+
   @ApiOperation({ summary: "Отримання всіх користувачів" })
   @ApiResponse({ status: 200, type: [User] })
   @Get("/users")
